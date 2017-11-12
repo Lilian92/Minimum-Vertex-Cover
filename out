@@ -1,2 +1,0 @@
-g++ ./src/*.cpp -o exec 
-Makefile:2: recipe for target 'exec' failed

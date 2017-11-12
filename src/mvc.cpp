@@ -8,7 +8,7 @@ Algorithm supposrted:
 */
 
 #include "util.h"
-#include "brandAndBound.h"
+#include "branchAndBound.h"
 #include "constructionHeuristics.h"
 #include "localSearch.h"
 
@@ -22,7 +22,8 @@ int main(int argc, char *argv[]) {
 		return 1;
 	}
 
-	if (argv[1] != "-inst" || argv[3] != "-alg" || argv[5] != "-time" || argv[7] != "-seed") {
+	if (strcmp(argv[1], "-inst") != 0 || strcmp(argv[3], "-alg") != 0 
+            || strcmp(argv[5], "-time") != 0 || strcmp(argv[7], "-seed") != 0) {
 		cout << "Exec prarmeter error" << endl;
 		return 1;
 	}
@@ -30,15 +31,15 @@ int main(int argc, char *argv[]) {
     //init function parameter
 	string graph_file_name = argv[2];
 	string algorithm = argv[4];
-    int cutOffTime = atoi(argv[6]);
+    int cutoffTime = atoi(argv[6]);
     int seed = atoi(argv[8]);
 
     //init ouput files.
     string output_file_name = "./Solutions/" + graph_file_name + "_" + algorithm + "_" + argv[6];
     if(algorithm != BnB)
-        output_file_name+= "_" + argv[8];
-    string solution_file += ".sol";
-    string trace_file += ".trace";
+        output_file_name += "_" + string(argv[8]);
+    string solution_file = output_file_name + ".sol";
+    string trace_file = output_file_name + ".trace";
 
 	ofstream output_solution, output_trace;
 	output_solution.open(solution_file);
@@ -64,17 +65,20 @@ int main(int argc, char *argv[]) {
     VCTYPE vc;
 
 	//Run your MVC function on graph G and collect as output the total weight of the MST
-    switch(algorithm) {
-        case BnB:
-            branchAndBound(G, vc); break;
-        case APPROX:
-            constructionHeuristics(G, vc, output_trace, cutoff, seed); break;
-        case LS1:
-            localSearch1(G, vc, output_trace, cutoff, seed); break;
-        case LS2:
-            localSearch2(G, vc, output_trace, cutoff, seed); break;
-        case default:
-            cout << "Algorithm Error" << endl;
+    if(algorithm == BnB) {
+        branchAndBound(G, vc);
+    }
+    else if (algorithm == APPROX) {
+        constructionHeuristics(G, vc, output_trace, cutoffTime, seed); 
+    }
+    else if (algorithm == LS1) {
+        localSearch1(G, vc, output_trace, cutoffTime, seed); 
+    }
+    else if (algorithm == LS2) {
+        localSearch2(G, vc, output_trace, cutoffTime, seed); 
+    }
+    else {
+        cout << "Algorithm Error" << endl;
     }
 
     /*
@@ -89,8 +93,10 @@ int main(int argc, char *argv[]) {
 
 	output_solution.close();
 	output_trace.close();
+#ifdef DEBUG
 	coutFile << "\n";
 	coutFile.close();
+#endif
 	
 	return 0;
 }

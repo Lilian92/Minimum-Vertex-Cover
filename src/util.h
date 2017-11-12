@@ -1,8 +1,14 @@
+#pragma once
+
+#include <stdio.h>
+#include <stdlib.h>
 #include <iostream> 
 #include <vector>
 #include <string>
+#include <cstring>
 #include <ctime>
 #include <fstream>
+#include <sstream>
 #include <queue>
 #include <set>
 #include <stack>
@@ -12,11 +18,11 @@
 #define LS1 "LS1"
 #define LS2 "LS2"
 
+using namespace std;
+
 //Since we are searching the result with DFS(for branch and bound), so we use stack to store the result.
 //FIXME
 typedef stack<size_t> VCTYPE;
-
-using namespace std;
 
 struct Edge {
     size_t v1;
@@ -24,7 +30,6 @@ struct Edge {
     
     Edge( size_t a=0, size_t b=0 ):
     v1(a), v2(b) {}
-    
 };
 
 //Graph
@@ -49,7 +54,7 @@ struct Graph {
 
         numberOfActiveVertices = numberOfVertices;
         activeSign = new bool[numberOfVertices];
-        memset(activeSign, 1, sizeof(activeSign));
+        memset(activeSign, 1, sizeof(bool)*numberOfVertices);
     }
     
     void removeEdge(Edge e) {

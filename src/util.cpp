@@ -19,7 +19,7 @@ Graph inputGraph(string graph_file) {
 
         size_t u;
         while(linestream >> u)
-            addEdge(Edge(v, u))
+            g.addEdge(Edge(v, u));
     }
 
     inputfile.close();
@@ -33,7 +33,7 @@ void outputGraph(ofstream & output, Graph & g) {
         if(g.activeSign[i] == 1) {
             output << "vertex " << i << endl;
             for (it=((g.vertices)[i]).begin(); it!=((g.vertices)[i]).end(); ++it) {
-                if(s.activeSign[*(it)] == 1) {
+                if(g.activeSign[*(it)] == 1) {
                     output << *(it) << "\t";
                 }
             }
