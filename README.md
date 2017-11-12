@@ -1,12 +1,15 @@
 # Minimum-Vertex-Cover
-platform:
+1. platform:
 ubuntu
 
-requirement:
+2. requirement:
 makefile
 g++
 
-To run the code:
+3. To run the code:
 copy the data directory here
 make
 make run
+
+4. To change the running configure:
+check the Makefile file

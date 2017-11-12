@@ -1,0 +1,243 @@
+number of vertices : 4
+vertex 0
+1	2	3	
+vertex 1
+0	2	
+vertex 2
+0	1	
+vertex 3
+0	
+
+number of vertices : 4
+vertex 0
+1	2	3	
+vertex 1
+0	2	
+vertex 2
+0	1	
+vertex 3
+0	
+
+number of vertices : 4
+vertex 0
+1	2	3	
+vertex 1
+0	2	
+vertex 2
+0	1	
+vertex 3
+0	
+
+number of vertices : 4
+vertex 0
+1	2	3	
+vertex 1
+0	2	
+vertex 2
+0	1	
+vertex 3
+0	
+
+mkdir -p build/./src/
+g++ -I./src -MMD -MP -std=c++11 -Wall -Wextra   -c src/util.cpp -o build/./src/util.cpp.o
+Makefile:25: recipe for target 'build/./src/util.cpp.o' failed
+number of vertices : 4
+vertex 0
+1	2	3	
+vertex 1
+0	2	
+vertex 2
+0	1	
+vertex 3
+0	
+
+number of vertices : 4
+vertex 0
+1	2	3	
+vertex 1
+0	2	
+vertex 2
+0	1	
+vertex 3
+0	
+
+number of vertices : 4
+vertex 0
+1	2	3	
+vertex 1
+0	2	
+vertex 2
+0	1	
+vertex 3
+0	
+
+number of vertices : 4
+vertex 0
+1	2	3	
+vertex 1
+0	2	
+vertex 2
+0	1	
+vertex 3
+0	
+
+number of vertices : 4
+vertex 0
+1	2	3	
+vertex 1
+0	2	
+vertex 2
+0	1	
+vertex 3
+0	
+
+number of vertices : 4
+vertex 0
+1	2	3	
+vertex 1
+0	2	
+vertex 2
+0	1	
+vertex 3
+0	
+
+number of vertices : 4
+vertex 0
+1	2	3	
+vertex 1
+0	2	
+vertex 2
+0	1	
+vertex 3
+0	
+
+number of vertices : 4
+vertex 0
+1	2	3	
+vertex 1
+0	2	
+vertex 2
+0	1	
+vertex 3
+0	
+
+number of vertices : 4
+vertex 0
+1	2	3	
+vertex 1
+0	2	
+vertex 2
+0	1	
+vertex 3
+0	
+
+number of vertices : 4
+vertex 0
+1	2	3	
+vertex 1
+0	2	
+vertex 2
+0	1	
+vertex 3
+0	
+
+number of vertices : 4
+vertex 0
+1	2	3	
+vertex 1
+0	2	
+vertex 2
+0	1	
+vertex 3
+0	
+
+number of vertices : 4
+vertex 0
+1	2	3	
+vertex 1
+0	2	
+vertex 2
+0	1	
+vertex 3
+0	
+
+number of vertices : 4
+vertex 0
+1	2	3	
+vertex 1
+0	2	
+vertex 2
+0	1	
+vertex 3
+0	
+
+number of vertices : 4
+vertex 0
+1	2	3	
+vertex 1
+0	2	
+vertex 2
+0	1	
+vertex 3
+0	
+
+number of vertices : 4
+vertex 0
+1	2	3	
+vertex 1
+0	2	
+vertex 2
+0	1	
+vertex 3
+0	
+
+number of vertices : 4
+vertex 0
+1	2	3	
+vertex 1
+0	2	
+vertex 2
+0	1	
+vertex 3
+0	
+
+number of vertices : 4
+vertex 0
+1	2	3	
+vertex 1
+0	2	3	
+vertex 2
+0	1	3	
+vertex 3
+0	1	2	
+
+number of vertices : 4
+vertex 0
+1	2	3	
+vertex 1
+0	2	3	
+vertex 2
+0	1	3	
+vertex 3
+0	1	2	
+
+number of vertices : 4
+vertex 0
+1	2	3	
+vertex 1
+0	2	3	
+vertex 2
+0	1	3	
+vertex 3
+0	1	2	
+
+number of vertices : 4
+vertex 0
+1	2	3	
+vertex 1
+0	2	3	
+vertex 2
+0	1	3	
+vertex 3
+0	1	2	
+

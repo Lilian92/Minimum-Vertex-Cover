@@ -18,6 +18,8 @@
 #define LS1 "LS1"
 #define LS2 "LS2"
 
+#define DEBUG 
+
 using namespace std;
 
 //Since we are searching the result with DFS(for branch and bound), so we use stack to store the result.
@@ -69,7 +71,7 @@ struct Graph {
 
     void addEdge(Edge e) {
         if(e.v1 >= numberOfVertices || e.v2 >= numberOfVertices) {
-            cout << "illegal edge" << endl;
+            cout << e.v1 << " " << e.v2 << "illegal edge" << endl;
             return ;
         }
 
@@ -123,7 +125,7 @@ Graph inputGraph(string graph_file);
 
 //output graph
 //For testing usage
-void outputGraph(ofstream & output, Graph & g);
+void outputGraph(Graph & g);
 
 //using dfs to find a cycle
 void dfs_findMaxmiumCycle(stack<size_t> & cycle, Graph & g, size_t startVertexID);

@@ -12,32 +12,37 @@ Graph inputGraph(string graph_file) {
     Graph g(numberOfVertices, numberOfEdges);
 
     //input edges' info
-    for(size_t v=0; v<g.numberOfVertices; v++) {
+    string line;
+    std::getline(inputfile, line);
+    std::stringstream   linestream(line);
+
+    for(size_t v=1; v<=g.numberOfVertices; v++) {
         string line;
         std::getline(inputfile, line);
         std::stringstream   linestream(line);
 
         size_t u;
-        while(linestream >> u)
-            g.addEdge(Edge(v, u));
+        while(linestream >> u) {
+            g.addEdge(Edge(v-1, u-1));
+        }
     }
 
     inputfile.close();
     return g;
 }
 
-void outputGraph(ofstream & output, Graph & g) {
-    output << "number of vertices : " << g.numberOfActiveVertices << endl;
+void outputGraph(Graph & g) {
+    cout << "number of vertices : " << g.numberOfActiveVertices << endl;
     set<size_t>::iterator it;
     for(size_t i=0; i<g.numberOfVertices; i++) {
         if(g.activeSign[i] == 1) {
-            output << "vertex " << i << endl;
+            cout << "vertex " << i << endl;
             for (it=((g.vertices)[i]).begin(); it!=((g.vertices)[i]).end(); ++it) {
                 if(g.activeSign[*(it)] == 1) {
-                    output << *(it) << "\t";
+                    cout << *(it) << "\t";
                 }
             }
-            output << endl;
+            cout << endl;
         }
     }
 }

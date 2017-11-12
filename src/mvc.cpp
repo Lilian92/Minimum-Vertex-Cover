@@ -17,7 +17,7 @@ int main(int argc, char *argv[]) {
     /*
      * Getting Parameter
      * */
-	if (argc != 8) {
+	if (argc != 9) {
 		cout << "Exec prarmeter error" << endl;
 		return 1;
 	}
@@ -45,18 +45,13 @@ int main(int argc, char *argv[]) {
 	output_solution.open(solution_file);
 	output_trace.open(trace_file);
 
-#ifdef DEBUG
-	ofstream coutFile;
-	coutFile.open("out", ios::app);
-#endif
-
     /*
      * Get graph file input
      * */
 	Graph G = inputGraph("./Data/" + graph_file_name + ".graph");
 
 #ifdef DEBUG
-    outputGraph(coutfile, G);
+    outputGraph(G);
 #endif
 
     /*
@@ -94,8 +89,7 @@ int main(int argc, char *argv[]) {
 	output_solution.close();
 	output_trace.close();
 #ifdef DEBUG
-	coutFile << "\n";
-	coutFile.close();
+	cout << "\n";
 #endif
 	
 	return 0;

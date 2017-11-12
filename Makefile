@@ -26,7 +26,12 @@ $(BUILD_DIR)/%.cpp.o: %.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
 all : run
-	$(BUILD_DIR)/exec
+
+run :
+	$(BUILD_DIR)/exec -inst tiny -alg BnB -time 10 -seed 0
+	$(BUILD_DIR)/exec -inst tiny -alg Approx -time 10 -seed 0
+	$(BUILD_DIR)/exec -inst tiny -alg LS1 -time 10 -seed 0
+	$(BUILD_DIR)/exec -inst tiny -alg LS2 -time 10 -seed 0
 
 .PHONY: clean
 
