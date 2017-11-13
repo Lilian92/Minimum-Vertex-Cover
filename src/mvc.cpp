@@ -59,6 +59,9 @@ int main(int argc, char *argv[]) {
      * */
     VCTYPE vc;
 
+#ifdef DEBUG
+    cout << "start mvc" << endl;
+#endif
 	//Run your MVC function on graph G and collect as output the total weight of the MST
     if(algorithm == BnB) {
         branchAndBound(G, vc);
