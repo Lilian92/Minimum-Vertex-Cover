@@ -36,82 +36,91 @@ struct Edge {
 
 //Graph
 struct Graph {
-    size_t numberOfVertices;
-    size_t numberOfEdges;
+    size_t numberOfVertices; //it is settled from the start and wouldn't change with update.
+    size_t numberOfEdges; //can be used to judge the end of searching. That is all edges are deleted(covered).
     //the reason why we don't use matrix to store is that most of our testing graphs seem like very sparse.
     set<size_t> * vertices;
 
     //To store the sign of which vertices are active to avoid delete vertices derectly from Graph when search for result.
     //Active vertex mean not delete(vertices are deteled becasue 1. be pushed in to vertex cover set 2.its edges are all got covered)
-    size_t numberOfActiveVertices;
-    bool * activeSign;
 
     //FIXME: init active status is all active or not active
-    Graph(size_t a, size_t b) :
-    numberOfVertices(a), numberOfEdges(b) {
+    Graph(size_t a) :
+    numberOfVertices(a), numberOfEdges(0) {
         vertices = new set<size_t>[numberOfVertices];
         for(size_t i=0; i<numberOfVertices; i++) {
             (vertices)[i] = set<size_t>();
         }
-
-        numberOfActiveVertices = numberOfVertices;
-        activeSign = new bool[numberOfVertices];
-        memset(activeSign, 1, sizeof(bool)*numberOfVertices);
     }
     
     void removeEdge(Edge e) {
-        if(e.v1 >= numberOfVertices || e.v2 >= numberOfVertices) {
+        if(e.v1 >= numberOfVertices || e.v2 >= numberOfVertices || e.v1 == e.v2) {
             cout << "illegal edge" << endl;
             return ;
         }
 
-        (vertices[e.v1]).erase(e.v2);
-        (vertices[e.v2]).erase(e.v1);
+        bool res = (vertices[e.v1]).erase(e.v2);
+        res |= (vertices[e.v2]).erase(e.v1);
+
+        // if that edge is removed, we need to reduce the number of edges
+        numberOfEdges -= res;
     }
 
     void addEdge(Edge e) {
-        if(e.v1 >= numberOfVertices || e.v2 >= numberOfVertices) {
+        if(e.v1 >= numberOfVertices || e.v2 >= numberOfVertices || e.v1 == e.v2) {
             cout << e.v1 << " " << e.v2 << "illegal edge" << endl;
             return ;
         }
 
-        (vertices[e.v1]).insert(e.v2);
-        (vertices[e.v2]).insert(e.v1);
+        std::pair<std::set<size_t>::iterator, bool> ret1, ret2;
+    
+        ret1 = (vertices[e.v1]).insert(e.v2);
+        ret2 = (vertices[e.v2]).insert(e.v1);
+
+        numberOfEdges += (ret1.second | ret2.second);
     }
 
-//    size_t degree(size_t vertex_id) {
-//        if(vertex_id >= numberOfVertices) {
-//            cout << "illegal vertex id" << endl;
-//            return ;
-//        }
-//        return vertices[vertex_id].size();
-//    }
+    size_t degree(size_t vertex_id) {
+        if(vertex_id >= numberOfVertices) {
+            cout << "illegal vertex id" << endl;
+            return 0;
+        }
+        
+        return (vertices[vertex_id]).size();
+    }
 
-    void unactiveVertex(size_t vertex_id) {
+    void removeVertex(size_t vertex_id) {
         if(vertex_id >= numberOfVertices) {
             cout << "illegal vertex id" << endl;
             return ;
         }
-        if( activeSign[vertex_id] == 1 ) {
-            activeSign[vertex_id] = 0;
-            numberOfActiveVertices --;
+
+        set<size_t>::iterator it;
+        for (it=vertices[vertex_id].begin(); it!=vertices[vertex_id].end(); ++it) {
+            removeEdge(Edge(vertex_id, (*it)));
         }
     }
 
-    void activeVertex(size_t vertex_id) {
+    void addVertex(set<size_t> & newVertex, size_t vertex_id) {
         if(vertex_id >= numberOfVertices) {
             cout << "illegal vertex id" << endl;
             return ;
         }
-        if( activeSign[vertex_id] == 0 ) {
-            activeSign[vertex_id] = 1;
-            numberOfActiveVertices ++;
+
+        if(degree(vertex_id) != 0) {
+            cout << "adding an existing vertex" << endl;
+            return ;
+        }
+
+        set<size_t>::iterator it;
+        for (it=newVertex.begin(); it!=newVertex.end(); ++it) {
+            addEdge(Edge(vertex_id, (*it)));
         }
     }
 
     bool findFirstActiveVertex(size_t & startVertexID) {
         startVertexID = 0;
-        while((activeSign[startVertexID] == 0) && startVertexID < numberOfVertices)
+        while((degree(startVertexID) == 0) && startVertexID < numberOfVertices)
             startVertexID ++;
         if(startVertexID == numberOfVertices)
             return false;

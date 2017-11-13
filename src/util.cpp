@@ -9,7 +9,7 @@ Graph inputGraph(string graph_file) {
     inputfile >> numberOfEdges;
     inputfile >> unweighted;
     
-    Graph g(numberOfVertices, numberOfEdges);
+    Graph g(numberOfVertices);
 
     //input edges' info
     string line;
@@ -32,15 +32,14 @@ Graph inputGraph(string graph_file) {
 }
 
 void outputGraph(Graph & g) {
-    cout << "number of vertices : " << g.numberOfActiveVertices << endl;
+    cout << "number of vertices : " << g.numberOfVertices << endl;
     set<size_t>::iterator it;
     for(size_t i=0; i<g.numberOfVertices; i++) {
-        if(g.activeSign[i] == 1) {
-            cout << "vertex " << i << endl;
+        if(g.degree(i) >= 0) {
+            cout << "vertex ID " << i << " with degree " << g.degree(i) << endl;
+            cout << i << endl;
             for (it=((g.vertices)[i]).begin(); it!=((g.vertices)[i]).end(); ++it) {
-                if(g.activeSign[*(it)] == 1) {
-                    cout << *(it) << "\t";
-                }
+                cout << *(it) << "\t";
             }
             cout << endl;
         }
@@ -48,8 +47,8 @@ void outputGraph(Graph & g) {
 }
 
 //FIXME
-bool dfs_findMaximumCycle(stack<size_t> & cycle, Graph & g, size_t startVertexID) {
-/*    bool * visited = new bool[g.numberOfVertices];
+/*bool dfs_findMaximumCycle(stack<size_t> & cycle, Graph & g, size_t startVertexID) {
+    bool * visited = new bool[g.numberOfVertices];
     for(size_t i=0; i<g.numberOfVertices; i++)
         visited[i] = false;
 
@@ -76,6 +75,6 @@ bool dfs_findMaximumCycle(stack<size_t> & cycle, Graph & g, size_t startVertexID
             cycle.pop();
         }
     }
-*/    
     return true;
 }
+*/
