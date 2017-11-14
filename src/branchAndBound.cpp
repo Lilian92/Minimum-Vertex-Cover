@@ -13,11 +13,16 @@ void searchMVC(Graph g, VCTYPE & vc, VCTYPE & mvc) {
 #endif
 
     if(g.numberOfEdges == 0) {
+#ifdef DEBUG
+        cout << "found a solution with" << vc.size() << endl;
+#endif
         if(vc.size() < mvc.size()) {
             copyVCOutOfOrder(vc, mvc);
         }
         return ;
     }
+
+    size_t originSizeOfVC = vc.size();
 
     stack<pair<size_t, set<size_t>>> verticesDeleted;
     g.screenOutPartOfVertices(vc, verticesDeleted);
@@ -72,6 +77,9 @@ void searchMVC(Graph g, VCTYPE & vc, VCTYPE & mvc) {
     while(numberOfVerticesToAdd--)
         vc.pop();
     g.addVertices(verticesDeleted);
+
+    while(vc.size() > originSizeOfVC)
+        vc.pop();
 
 #ifdef DEBUG
     cout << "the end" << g.numberOfEdges << " " << g.numberOfVertices << endl;
