@@ -1,243 +1,74 @@
-number of vertices : 4
-vertex 0
-1	2	3	
-vertex 1
-0	2	
-vertex 2
-0	1	
-vertex 3
-0	
+./build/exec -inst tiny -alg BnB -time 10 -seed 0
 
-number of vertices : 4
-vertex 0
+number of vertices : 5
+vertex ID 0 with degree 3
 1	2	3	
-vertex 1
-0	2	
-vertex 2
-0	1	
-vertex 3
-0	
-
-number of vertices : 4
-vertex 0
-1	2	3	
-vertex 1
-0	2	
-vertex 2
-0	1	
-vertex 3
-0	
-
-number of vertices : 4
-vertex 0
-1	2	3	
-vertex 1
-0	2	
-vertex 2
-0	1	
-vertex 3
-0	
-
-mkdir -p build/./src/
-g++ -I./src -MMD -MP -std=c++11 -Wall -Wextra   -c src/util.cpp -o build/./src/util.cpp.o
-Makefile:25: recipe for target 'build/./src/util.cpp.o' failed
-number of vertices : 4
-vertex 0
-1	2	3	
-vertex 1
-0	2	
-vertex 2
-0	1	
-vertex 3
-0	
-
-number of vertices : 4
-vertex 0
-1	2	3	
-vertex 1
-0	2	
-vertex 2
-0	1	
-vertex 3
-0	
-
-number of vertices : 4
-vertex 0
-1	2	3	
-vertex 1
-0	2	
-vertex 2
-0	1	
-vertex 3
-0	
-
-number of vertices : 4
-vertex 0
-1	2	3	
-vertex 1
-0	2	
-vertex 2
-0	1	
-vertex 3
-0	
-
-number of vertices : 4
-vertex 0
-1	2	3	
-vertex 1
-0	2	
-vertex 2
-0	1	
-vertex 3
-0	
-
-number of vertices : 4
-vertex 0
-1	2	3	
-vertex 1
-0	2	
-vertex 2
-0	1	
-vertex 3
-0	
-
-number of vertices : 4
-vertex 0
-1	2	3	
-vertex 1
-0	2	
-vertex 2
-0	1	
-vertex 3
-0	
-
-number of vertices : 4
-vertex 0
-1	2	3	
-vertex 1
-0	2	
-vertex 2
-0	1	
-vertex 3
-0	
-
-number of vertices : 4
-vertex 0
-1	2	3	
-vertex 1
-0	2	
-vertex 2
-0	1	
-vertex 3
-0	
-
-number of vertices : 4
-vertex 0
-1	2	3	
-vertex 1
-0	2	
-vertex 2
-0	1	
-vertex 3
-0	
-
-number of vertices : 4
-vertex 0
-1	2	3	
-vertex 1
-0	2	
-vertex 2
-0	1	
-vertex 3
-0	
-
-number of vertices : 4
-vertex 0
-1	2	3	
-vertex 1
-0	2	
-vertex 2
-0	1	
-vertex 3
-0	
-
-number of vertices : 4
-vertex 0
-1	2	3	
-vertex 1
-0	2	
-vertex 2
-0	1	
-vertex 3
-0	
-
-number of vertices : 4
-vertex 0
-1	2	3	
-vertex 1
-0	2	
-vertex 2
-0	1	
-vertex 3
-0	
-
-number of vertices : 4
-vertex 0
-1	2	3	
-vertex 1
-0	2	
-vertex 2
-0	1	
-vertex 3
-0	
-
-number of vertices : 4
-vertex 0
-1	2	3	
-vertex 1
-0	2	
-vertex 2
-0	1	
-vertex 3
-0	
-
-number of vertices : 4
-vertex 0
-1	2	3	
-vertex 1
+vertex ID 1 with degree 3
 0	2	3	
-vertex 2
-0	1	3	
-vertex 3
-0	1	2	
+vertex ID 2 with degree 2
+0	1	
+vertex ID 3 with degree 3
+0	1	4	
+vertex ID 4 with degree 1
+3	
+start mvc
+BAD, after init
+----------start searching3 5
+***after screen out3 5
+***start search maxDegree with 0
+----------start searching1 5
+***after screen out0 5
+***start search maxDegree with 0
+----------start searching0 5
+***after search the maxde0 5
+----------start searching0 5
+the end1 5
+***after search the maxde3 5
+----------start searching0 5
+the end3 5
 
-number of vertices : 4
-vertex 0
-1	2	3	
-vertex 1
-0	2	3	
-vertex 2
-0	1	3	
-vertex 3
-0	1	2	
+./build/exec -inst tiny -alg Approx -time 10 -seed 0
 
-number of vertices : 4
-vertex 0
+number of vertices : 5
+vertex ID 0 with degree 3
 1	2	3	
-vertex 1
+vertex ID 1 with degree 3
 0	2	3	
-vertex 2
-0	1	3	
-vertex 3
-0	1	2	
+vertex ID 2 with degree 2
+0	1	
+vertex ID 3 with degree 3
+0	1	4	
+vertex ID 4 with degree 1
+3	
+start mvc
 
-number of vertices : 4
-vertex 0
+./build/exec -inst tiny -alg LS1 -time 10 -seed 0
+
+number of vertices : 5
+vertex ID 0 with degree 3
 1	2	3	
-vertex 1
+vertex ID 1 with degree 3
 0	2	3	
-vertex 2
-0	1	3	
-vertex 3
-0	1	2	
+vertex ID 2 with degree 2
+0	1	
+vertex ID 3 with degree 3
+0	1	4	
+vertex ID 4 with degree 1
+3	
+start mvc
+
+./build/exec -inst tiny -alg LS2 -time 10 -seed 0
+
+number of vertices : 5
+vertex ID 0 with degree 3
+1	2	3	
+vertex ID 1 with degree 3
+0	2	3	
+vertex ID 2 with degree 2
+0	1	
+vertex ID 3 with degree 3
+0	1	4	
+vertex ID 4 with degree 1
+3	
+start mvc
 

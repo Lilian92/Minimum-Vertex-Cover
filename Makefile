@@ -33,6 +33,16 @@ run :
 	$(BUILD_DIR)/exec -inst tiny -alg LS1 -time 10 -seed 0
 	$(BUILD_DIR)/exec -inst tiny -alg LS2 -time 10 -seed 0
 
+	$(BUILD_DIR)/exec -inst tiny_1 -alg BnB -time 10 -seed 0
+	$(BUILD_DIR)/exec -inst tiny_1 -alg Approx -time 10 -seed 0
+	$(BUILD_DIR)/exec -inst tiny_1 -alg LS1 -time 10 -seed 0
+	$(BUILD_DIR)/exec -inst tiny_1 -alg LS2 -time 10 -seed 0
+
+	$(BUILD_DIR)/exec -inst email -alg BnB -time 10 -seed 0
+	$(BUILD_DIR)/exec -inst email -alg Approx -time 10 -seed 0
+	$(BUILD_DIR)/exec -inst email -alg LS1 -time 10 -seed 0
+	$(BUILD_DIR)/exec -inst email -alg LS2 -time 10 -seed 0
+
 .PHONY: clean
 
 clean:

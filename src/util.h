@@ -18,7 +18,7 @@
 #define LS1 "LS1"
 #define LS2 "LS2"
 
-#define DEBUG 
+//#define DEBUG 
 
 using namespace std;
 
@@ -183,7 +183,7 @@ struct Graph {
     //For MVC
     //Getting one vertices cover
     //Based on always choose the vertex with biggest degree
-    void getOneVerticesCover(VCTYPE & vc) {
+    void getLowerBound(VCTYPE & vc) {
         stack<pair<size_t, set<size_t>>> verticesDeleted;
         while(numberOfEdges != 0) {
             size_t maxDegreeVertexID;
