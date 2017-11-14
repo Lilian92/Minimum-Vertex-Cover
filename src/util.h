@@ -149,6 +149,7 @@ struct Graph {
 
     size_t findVertexWithBiggestDegree(size_t & maxDegreeVertexID) {
         size_t maxDegree = 0;
+        maxDegreeVertexID = 0;
         for(size_t vertexID=0; vertexID < numberOfVertices; vertexID++) {
             if(degree(vertexID) > maxDegree) {
                 maxDegree = degree(vertexID);
@@ -201,7 +202,7 @@ Graph inputGraph(string graph_file);
 
 //output graph
 //For testing usage
-void outputGraph(Graph & g);
+void outputGraph(Graph & g, string discription = "");
 
 //using dfs to find a cycle
 void dfs_findMaxmiumCycle(stack<size_t> & cycle, Graph & g, size_t startVertexID);

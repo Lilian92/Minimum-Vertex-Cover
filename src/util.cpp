@@ -52,7 +52,8 @@ Graph inputGraph(string graph_file) {
     return g;
 }
 
-void outputGraph(Graph & g) {
+void outputGraph(Graph & g, string discription) {
+    cout << discription << endl;
     cout << "number of vertices : " << g.numberOfVertices << endl;
     set<size_t>::iterator it;
     for(size_t i=0; i<g.numberOfVertices; i++) {

@@ -11,13 +11,26 @@ void searchMVC(Graph g, VCTYPE & vc, VCTYPE & mvc) {
         }
         return ;
     }
+    cout << "just get in" << g.numberOfEdges << endl;
+    outputGraph(g);
 
     stack<pair<size_t, set<size_t>>> verticesDeleted;
     g.screenOutPartOfVertices(vc, verticesDeleted);
 
+    if(g.numberOfEdges == 0) {
+        if(vc.size() < mvc.size()) {
+            copyVCOutOfOrder(vc, mvc);
+        }
+        return ;
+    }
+
+    cout << "after screen out" << g.numberOfEdges << endl;
+    outputGraph(g);
+
     //start to search
     size_t maxDegreeVertexID;
     g.findVertexWithBiggestDegree(maxDegreeVertexID);
+    cout << "maxDegree" << maxDegreeVertexID << endl;
 
     /*
      * search the route with the vertex with largest degree
@@ -31,6 +44,9 @@ void searchMVC(Graph g, VCTYPE & vc, VCTYPE & mvc) {
     }
     //recover after search
     g.addVertex(maxDegreeVertexID, vertexWithMaxDegree);
+
+    cout << "after search the maxde" << endl;
+    outputGraph(g);
 
     /*
      * search the route with adding all neighbors of the largest degree vertex
@@ -46,6 +62,9 @@ void searchMVC(Graph g, VCTYPE & vc, VCTYPE & mvc) {
     }
     //recover after search
     g.addVertices(verticesDeleted);
+
+    cout << "the end" << endl;
+    outputGraph(g);
 }
 
 void branchAndBound(Graph & g, VCTYPE & vc) {
@@ -64,7 +83,6 @@ void branchAndBound(Graph & g, VCTYPE & vc) {
     cout << "BAD, after init" << endl;
     outputGraph(g);
 #endif
-    
 
     searchMVC(g, vc, mvc);
 }
