@@ -6,7 +6,12 @@ size_t lowerBoundOfMVC(Graph & g) {
     return vc.size()/2;
 }
 
-void searchMVC(Graph g, VCTYPE & vc, VCTYPE & mvc) {
+void searchMVC(Graph g, VCTYPE & vc, VCTYPE & mvc, clock_t start, int cutoffTime) {
+    clock_t end = clock();
+    clock_t totalTime = (end - start) / (float) CLOCKS_PER_SEC;
+    if(totalTime > (clock_t)cutoffTime)
+        return ;
+
 #ifdef DEBUG
     cout << "----------start searching" << g.numberOfEdges << " " << g.numberOfVertices << endl;
     outputGraph(g);
@@ -48,7 +53,7 @@ void searchMVC(Graph g, VCTYPE & vc, VCTYPE & mvc) {
     set<size_t> vertexWithMaxDegree(g.vertices[maxDegreeVertexID]);
     g.removeVertex(maxDegreeVertexID);
     if((lowerBoundOfMVC(g)+vc.size()) < mvc.size()) {
-        searchMVC(g, vc, mvc);
+        searchMVC(g, vc, mvc, start, cutoffTime);
     }
     //recover after search
     vc.pop();
@@ -72,7 +77,7 @@ void searchMVC(Graph g, VCTYPE & vc, VCTYPE & mvc) {
         vc.push(*it);
     }
     if(lowerBoundOfMVC(g) < mvc.size()) {
-        searchMVC(g, vc, mvc);
+        searchMVC(g, vc, mvc, start, cutoffTime);
     }
     //recover after search
     while(numberOfVerticesToAdd--)
@@ -88,12 +93,14 @@ void searchMVC(Graph g, VCTYPE & vc, VCTYPE & mvc) {
 #endif
 }
 
-void branchAndBound(Graph & g, VCTYPE & mvc) {
+void branchAndBound(Graph & g, VCTYPE & mvc, int cutoffTime) {
     //init process
     if(mvc.size() != 0) {
         cout << "In branch and bound: wrong start position to search" << endl;
         return;
     }
+
+    clock_t start = clock();
 
     stack<pair<size_t, set<size_t>>> verticesDelete;
     g.screenOutPartOfVertices(mvc, verticesDelete);
@@ -105,5 +112,5 @@ void branchAndBound(Graph & g, VCTYPE & mvc) {
     //outputGraph(g);
 #endif
 
-    searchMVC(g, vc, mvc);
+    searchMVC(g, vc, mvc, start, cutoffTime);
 }

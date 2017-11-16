@@ -23,6 +23,11 @@ void outputVC(VCTYPE & vc) {
 
 Graph inputGraph(string graph_file) {
     ifstream inputfile(graph_file);
+
+    if(!inputfile.is_open()) {
+        cout << "opening file false" << endl;
+        exit(1);
+    }
     
     //init graph
     size_t numberOfVertices, numberOfEdges, unweighted;

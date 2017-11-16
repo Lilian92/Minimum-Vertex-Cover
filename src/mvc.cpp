@@ -62,9 +62,13 @@ int main(int argc, char *argv[]) {
 #ifdef DEBUG
     cout << "start mvc" << endl;
 #endif
+
+    clock_t start, end;
+    start = clock();
+
 	//Run your MVC function on graph G and collect as output the total weight of the MST
     if(algorithm == BnB) {
-        branchAndBound(G, vc);
+        branchAndBound(G, vc, cutoffTime);
     }
     else if (algorithm == APPROX) {
         constructionHeuristics(G, vc, output_trace, cutoffTime, seed); 
@@ -78,11 +82,15 @@ int main(int argc, char *argv[]) {
     else {
         cout << "Algorithm Error" << endl;
     }
+    end = clock();
+    clock_t totalTime = (end - start) / (float) CLOCKS_PER_SEC;
+    cout << totalTime << "\t";
 
     /*
      * output result
      * */
     output_solution << vc.size() << endl;
+    cout << vc.size() << endl;
     while(vc.size() != 0) {
         size_t vec = vc.top();
         vc.pop();

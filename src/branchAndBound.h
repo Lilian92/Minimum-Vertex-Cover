@@ -6,4 +6,4 @@
  * */
 #include "util.h"
 
-void branchAndBound(Graph & g, VCTYPE & vc);
+void branchAndBound(Graph & g, VCTYPE & vc, int cutoffTime);
