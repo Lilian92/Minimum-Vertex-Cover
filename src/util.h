@@ -41,6 +41,8 @@ struct Edge {
 struct Graph {
     size_t numberOfVertices; //it is settled from the start and wouldn't change with update.
     size_t numberOfEdges; //can be used to judge the end of searching. That is all edges are deleted(covered).
+    size_t activeNumberOfVertices;
+    const size_t DELETED;
     //the reason why we don't use matrix to store is that most of our testing graphs seem like very sparse.
     set<size_t> * vertices;
 
@@ -48,7 +50,7 @@ struct Graph {
     //Active vertex mean not delete(vertices are deteled becasue 1. be pushed in to vertex cover set 2.its edges are all got covered)
 
     Graph(size_t a) :
-    numberOfVertices(a), numberOfEdges(0) {
+    numberOfVertices(a), activeNumberOfVertices(a), DELETED(a + 1), numberOfEdges(0) {
         vertices = new set<size_t>[numberOfVertices];
         for(size_t i=0; i<numberOfVertices; i++) {
             (vertices)[i] = set<size_t>();
@@ -87,14 +89,20 @@ struct Graph {
             cout << "illegal vertex id" << endl;
             return 0;
         }
-        
+        if (*vertices[vertexID].begin() == DELETED) {
+            return 0;
+        }
         return (vertices[vertexID]).size();
     }
 
     void removeVertex(size_t vertexID) {
         if(vertexID >= numberOfVertices) {
             cout << "illegal vertex id" << endl;
-            return ;
+            return;
+        }
+        if (isDeleted(vertexID)) {
+            cout << "vertex deleted" << endl;
+            return;
         }
 
         numberOfEdges -= vertices[vertexID].size();
@@ -104,8 +112,9 @@ struct Graph {
             // Remove the reverse edge
             vertices[*it].erase(vertexID);
         }
-        // Erase this vertex's edge list
+        activeNumberOfVertices--;
         vertices[vertexID].clear();
+        vertices[vertexID].insert(DELETED);
     }
 
     void addVertex(size_t vertexID, set<size_t> & newVertex) {
@@ -141,6 +150,10 @@ struct Graph {
             return false;
         else
             return true;
+    }
+
+    bool isDeleted(size_t vertexID) {
+        return *vertices[vertexID].begin() == DELETED;
     }
 
     size_t findActiveVertexNumber() {
