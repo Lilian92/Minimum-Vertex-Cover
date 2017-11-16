@@ -1,5 +1,26 @@
 #include "util.h" 
 
+void copyVCOutOfOrder(VCTYPE & from, VCTYPE & to){
+    VCTYPE temp(from);
+    while(!to.empty()) {
+        to.pop();
+    }
+
+    while(!temp.empty()) {
+        to.push(temp.top());
+        temp.pop();
+    }
+}
+
+void outputVC(VCTYPE & vc) {
+    VCTYPE temp(vc);
+    while(!temp.empty()) {
+        cout << temp.top() << "\t";
+        temp.pop();
+    }
+    cout << "\n";
+}
+
 Graph inputGraph(string graph_file) {
     ifstream inputfile(graph_file);
     
@@ -31,13 +52,13 @@ Graph inputGraph(string graph_file) {
     return g;
 }
 
-void outputGraph(Graph & g) {
+void outputGraph(Graph & g, string discription) {
+    cout << discription << endl;
     cout << "number of vertices : " << g.numberOfVertices << endl;
     set<size_t>::iterator it;
     for(size_t i=0; i<g.numberOfVertices; i++) {
-        if(g.degree(i) >= 0) {
+        if(g.degree(i) > 0) {
             cout << "vertex ID " << i << " with degree " << g.degree(i) << endl;
-            cout << i << endl;
             for (it=((g.vertices)[i]).begin(); it!=((g.vertices)[i]).end(); ++it) {
                 cout << *(it) << "\t";
             }
