@@ -97,10 +97,15 @@ struct Graph {
             return ;
         }
 
+        numberOfEdges -= vertices[vertexID].size();
+
         set<size_t>::iterator it;
         for (it=vertices[vertexID].begin(); it!=vertices[vertexID].end(); ++it) {
-            removeEdge(Edge(vertexID, (*it)));
+            // Remove the reverse edge
+            vertices[*it].erase(vertexID);
         }
+        // Erase this vertex's edge list
+        vertices[vertexID].clear();
     }
 
     void addVertex(size_t vertexID, set<size_t> & newVertex) {
