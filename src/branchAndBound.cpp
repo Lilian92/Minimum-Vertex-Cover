@@ -65,7 +65,8 @@ void searchMVC(Graph g, VCTYPE & vc, VCTYPE & mvc) {
     set<size_t>::iterator it;
     //store and then delete vertices 
     size_t numberOfVerticesToAdd = g.degree(maxDegreeVertexID);
-    for (it=g.vertices[maxDegreeVertexID].begin(); it!=g.vertices[maxDegreeVertexID].end(); ++it) {
+    set<size_t> temp(g.vertices[maxDegreeVertexID]);
+    for (it=temp.begin(); it!=temp.end(); ++it) {
         verticesDeleted.push(make_pair((*it), set<size_t>(g.vertices[*it])));
         g.removeVertex((*it));
         vc.push(*it);
