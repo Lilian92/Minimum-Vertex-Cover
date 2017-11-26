@@ -94,7 +94,7 @@ int main(int argc, char *argv[]) {
     while(vc.size() != 0) {
         size_t vec = vc.top();
         vc.pop();
-        output_solution << vec << "\t";
+        output_solution << vec+1 << "\t";
     }
 
 	output_solution.close();
