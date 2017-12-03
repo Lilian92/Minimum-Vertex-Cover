@@ -29,6 +29,12 @@ $(BUILD_DIR)/%.cpp.o: %.cpp
 all : run
 
 run :
+<<<<<<< HEAD
+	$(BUILD_DIR)/exec -inst tiny -alg BnB -time 10 -seed 0
+	$(BUILD_DIR)/exec -inst example -alg Approx -time 10 -seed 0
+	$(BUILD_DIR)/exec -inst tiny -alg LS1 -time 10 -seed 0
+	$(BUILD_DIR)/exec -inst tiny -alg LS2 -time 10 -seed 0
+=======
 #	$(BUILD_DIR)/exec -inst email -alg BnB -time 10 -seed 0
 #	$(BUILD_DIR)/exec -inst email -alg BnB -time 10 -seed 0
 #	$(BUILD_DIR)/exec -inst tiny -alg BnB -time 10 -seed 0
@@ -67,11 +73,15 @@ run :
 	$(BUILD_DIR)/exec -inst power -alg BnB -time 10 -seed 0
 	$(BUILD_DIR)/exec -inst star -alg BnB -time 10 -seed 0
 	$(BUILD_DIR)/exec -inst star2 -alg BnB -time 10 -seed 0
+>>>>>>> 8f1f1dbb5e91dab21634f5ac97ec311e0a6dd9ab
 
 .PHONY: clean
 
 clean:
 	$(RM) -r $(BUILD_DIR)
+clean2:
+	$(RM) -r $(BUILD_DIR)
+	$(RM) -r $(SOL_DIRS)/*
 
 -include $(DEPS)
 
