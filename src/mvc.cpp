@@ -11,6 +11,7 @@ Algorithm supposrted:
 #include "branchAndBound.h"
 #include "constructionHeuristics.h"
 #include "localSearch.h"
+#include <time.h>
 
 int main(int argc, char *argv[]) {
 
@@ -62,12 +63,15 @@ int main(int argc, char *argv[]) {
 #ifdef DEBUG
     cout << "start mvc" << endl;
 #endif
+    clock_t timer;
 	//Run your MVC function on graph G and collect as output the total weight of the MST
     if(algorithm == BnB) {
         branchAndBound(G, vc);
     }
     else if (algorithm == APPROX) {
-        constructionHeuristics(G, vc, output_trace, cutoffTime, seed); 
+        timer = clock();
+        constructionHeuristics(G, vc, output_trace, cutoffTime, seed);
+        timer = clock() - timer;
     }
     else if (algorithm == LS1) {
         localSearch1(G, vc, output_trace, cutoffTime, seed); 
@@ -83,6 +87,7 @@ int main(int argc, char *argv[]) {
      * output result
      * */
     output_solution << vc.size() << endl;
+    output_solution << ((float)timer) / CLOCKS_PER_SEC;
     while(vc.size() != 0) {
         size_t vec = vc.top();
         vc.pop();
