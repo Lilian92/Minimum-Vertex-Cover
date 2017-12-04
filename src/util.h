@@ -100,11 +100,6 @@ struct Graph {
             cout << "illegal vertex id" << endl;
             return;
         }
-        if (isDeleted(vertexID)) {
-            cout << "vertex deleted" << endl;
-            return;
-        }
-
         numberOfEdges -= vertices[vertexID].size();
 
         set<size_t>::iterator it;
