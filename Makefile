@@ -31,7 +31,7 @@ all : run
 run :
 #	$(BUILD_DIR)/exec -inst email -alg BnB -time 10 -seed 0
 #	$(BUILD_DIR)/exec -inst email -alg BnB -time 10 -seed 0
-#	$(BUILD_DIR)/exec -inst tiny -alg BnB -time 10 -seed 0
+	$(BUILD_DIR)/exec -inst tiny -alg BnB -time 10 -seed 0
 #	$(BUILD_DIR)/exec -inst tiny -alg Approx -time 10 -seed 0
 #	$(BUILD_DIR)/exec -inst tiny -alg LS1 -time 10 -seed 0
 #	$(BUILD_DIR)/exec -inst tiny -alg LS2 -time 10 -seed 0
@@ -41,7 +41,7 @@ run :
 #	$(BUILD_DIR)/exec -inst tiny_1 -alg LS1 -time 10 -seed 0
 #	$(BUILD_DIR)/exec -inst tiny_1 -alg LS2 -time 10 -seed 0
 
-#	$(BUILD_DIR)/exec -inst karate -alg BnB -time 10 -seed 0
+	$(BUILD_DIR)/exec -inst karate -alg BnB -time 10 -seed 0
 #	$(BUILD_DIR)/exec -inst karate -alg Approx -time 10 -seed 0
 #	$(BUILD_DIR)/exec -inst karate -alg LS1 -time 10 -seed 0
 #	$(BUILD_DIR)/exec -inst karate -alg LS2 -time 10 -seed 0
