@@ -195,7 +195,7 @@ struct Graph {
     //For MVC
     //Getting one vertices cover
     //Based on always choose the vertex with biggest degree
-    void getLowerBound(VCTYPE & vc) {
+    void getOneVerticesCover(VCTYPE & vc) {
         stack<pair<size_t, set<size_t>>> verticesDeleted;
         while(numberOfEdges != 0) {
             size_t maxDegreeVertexID;
@@ -206,6 +206,28 @@ struct Graph {
         }
 
         addVertices(verticesDeleted);
+    }
+
+    //For MVC
+    //MAXIMUM MATCHING
+    size_t getLowerBound() {
+       /* Graph g(*this);
+        size_t matchedWith[g.numberOfVertices];
+        size_t numberOfMatchs;
+
+        //finding a initial matching
+        stack<size_t> route;
+        stack<pair<size_t, set<size_t>>> verticesDeleted;
+        while(numberOfEdges != 0) {
+            size_t maxDegreeVertexID;
+            findVertexWithBiggestDegree(maxDegreeVertexID);
+            verticesDeleted.push(make_pair(maxDegreeVertexID, set<size_t>(vertices[maxDegreeVertexID])));
+            removeVertex(maxDegreeVertexID);
+        }
+       */ 
+        VCTYPE vc;
+        getOneVerticesCover(vc);
+        return vc.size()/2;
     }
 };
 

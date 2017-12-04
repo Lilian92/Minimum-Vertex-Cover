@@ -1,9 +1,7 @@
 #include "branchAndBound.h"
 
 size_t lowerBoundOfMVC(Graph & g) {
-    VCTYPE vc;
-    g.getLowerBound(vc);
-    return vc.size()/2;
+    return g.getLowerBound();
 }
 
 void searchMVC(Graph g, VCTYPE & vc, VCTYPE & mvc, clock_t start, int cutoffTime) {
@@ -106,7 +104,7 @@ void branchAndBound(Graph & g, VCTYPE & mvc, int cutoffTime) {
     g.screenOutPartOfVertices(mvc, verticesDelete);
 
     VCTYPE vc(mvc);
-    g.getLowerBound(mvc);
+    g.getOneVerticesCover(mvc);
 #ifdef DEBUG
     cout << "BAD, after init" << endl;
     //outputGraph(g);
