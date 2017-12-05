@@ -3,8 +3,8 @@
 #include <iterator>
 void constructionHeuristics(Graph &g, VCTYPE &vc, ofstream &output_trace, int cutOffTime, int randSeed) {
 	clock_t start, end;
-	size_t deleted[g.numberOfVertices];
-	memset(deleted, 0, g.numberOfVertices * sizeof(size_t));
+	char deleted[g.numberOfVertices];
+	memset(deleted, 0, g.numberOfVertices * sizeof(char));
     start = clock();
 	while (g.numberOfEdges > 0) {
 		int uMin = -1;
