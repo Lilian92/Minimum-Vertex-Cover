@@ -83,7 +83,7 @@ int main(int argc, char *argv[]) {
         cout << "Algorithm Error" << endl;
     }
     end = clock();
-    clock_t totalTime = (end - start) / (float) CLOCKS_PER_SEC;
+    float totalTime = (end - start) / (float) CLOCKS_PER_SEC;
     cout << totalTime << "\t";
 
     /*

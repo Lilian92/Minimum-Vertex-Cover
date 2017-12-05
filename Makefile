@@ -2,7 +2,7 @@ TARGET_EXEC ?= exec
 
 BUILD_DIR ?= ./build
 SRC_DIRS ?= ./src
-SOL_DIRS ?= ./Solutions
+SOL_DIR ?= ./Solutions
 
 SRCS := $(shell find $(SRC_DIRS) -name *.cpp -or -name *.c -or -name *.s)
 OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
@@ -72,6 +72,8 @@ run :
 
 clean:
 	$(RM) -r $(BUILD_DIR)
+	$(RM) -r $(SOL_DIR)
+	mkdir Solutions
 
 -include $(DEPS)
 
