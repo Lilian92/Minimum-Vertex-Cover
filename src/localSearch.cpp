@@ -38,7 +38,7 @@ void localSearch1(Graph & g, VCTYPE & vc, ofstream & output_trace,
 	UncoveredEdges(edges, candidate_edges, uncovered_edges);
 	clock_t begin = clock();
 	clock_t best;
-	g.getLowerBound(GCandidate);
+	g.getOneVerticesCover(GCandidate);
 	while (!GCandidate.empty()) {
 		size_t temp = GCandidate.top();
 		UpdateEdges(g, candidate, candidate_edges, uncovered_edges,
@@ -232,7 +232,7 @@ void localSearch2(Graph & g, VCTYPE & vc, ofstream & output_trace,
 	UncoveredEdges(edges, candidate_edges, uncovered_edges);
 	clock_t begin = clock();
 	clock_t best;
-	g.getLowerBound(GCandidate);
+	g.getOneVerticesCover(GCandidate);
 	while (!GCandidate.empty()) {
 		size_t temp = GCandidate.top();
 		UpdateEdges(g, candidate, candidate_edges, uncovered_edges,
