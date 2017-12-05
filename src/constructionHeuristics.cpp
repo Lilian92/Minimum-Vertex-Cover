@@ -3,11 +3,13 @@
 #include <iterator>
 void constructionHeuristics(Graph &g, VCTYPE &vc, ofstream &output_trace, int cutOffTime, int randSeed) {
 	clock_t start, end;
-	size_t *deleted = (size_t *) malloc(sizeof(size_t) * g.numberOfVertices);
+	size_t deleted[g.numberOfVertices];
+	memset(deleted, 0, g.numberOfVertices * sizeof(size_t));
     start = clock();
 	while (g.numberOfEdges > 0) {
+		int uMin = -1;
 		set<size_t> :: iterator itr;
-		int uMinDegree = g.numberOfVertices, uMin = -1;
+		int uMinDegree = g.numberOfVertices;
 		for (int i = 0; i < g.numberOfVertices; i++) {
 			int uDegree = g.degree(i);
 			if (uDegree < uMinDegree && deleted[i] == 0) {
