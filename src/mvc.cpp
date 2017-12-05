@@ -48,10 +48,10 @@ int main(int argc, char *argv[]) {
     /*
      * Get graph file input
      * */
-	Graph G = inputGraph("./Data/" + graph_file_name + ".graph");
+	Graph Gra = inputGraph("./Data/" + graph_file_name + ".graph");
 
 #ifdef DEBUG
-    outputGraph(G);
+    outputGraph(Gra, "after Input");
 #endif
 
     /*
@@ -64,27 +64,35 @@ int main(int argc, char *argv[]) {
 #endif
 
     clock_t start, end;
-    start = clock();
+    clock_t totalTime = 0;
 
-	//Run your MVC function on graph G and collect as output the total weight of the MST
-    if(algorithm == BnB) {
-        branchAndBound(G, vc, cutoffTime);
+    size_t times = TEST_TIME;
+    while(times--) {
+        Graph G(Gra);
+        clearStack(vc);
+
+        start = clock();
+        //Run your MVC function on graph G and collect as output the total weight of the MST
+        if(algorithm == BnB) {
+            branchAndBound(G, vc, cutoffTime);
+        }
+        else if (algorithm == APPROX) {
+            constructionHeuristics(G, vc, output_trace, cutoffTime, seed); 
+        }
+        else if (algorithm == LS1) {
+            localSearch1(G, vc, output_trace, cutoffTime, seed); 
+        }
+        else if (algorithm == LS2) {
+            localSearch2(G, vc, output_trace, cutoffTime, seed); 
+        }
+        else {
+            cout << "Algorithm Error" << endl;
+        }
+        end = clock();
+        totalTime = (end - start) / (float) CLOCKS_PER_SEC;
     }
-    else if (algorithm == APPROX) {
-        constructionHeuristics(G, vc, output_trace, cutoffTime, seed); 
-    }
-    else if (algorithm == LS1) {
-        localSearch1(G, vc, output_trace, cutoffTime, seed); 
-    }
-    else if (algorithm == LS2) {
-        localSearch2(G, vc, output_trace, cutoffTime, seed); 
-    }
-    else {
-        cout << "Algorithm Error" << endl;
-    }
-    end = clock();
-    clock_t totalTime = (end - start) / (float) CLOCKS_PER_SEC;
-    cout << totalTime << "\t";
+
+    cout << totalTime / TEST_TIME << "\t";
 
     /*
      * output result
