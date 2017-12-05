@@ -64,7 +64,7 @@ int main(int argc, char *argv[]) {
 #endif
 
     clock_t start, end;
-    clock_t totalTime = 0;
+    float totalTime = 0.0;
 
     size_t times = TEST_TIME;
     while(times--) {
@@ -91,14 +91,7 @@ int main(int argc, char *argv[]) {
         end = clock();
         totalTime = (end - start) / (float) CLOCKS_PER_SEC;
     }
-<<<<<<< HEAD
-    end = clock();
-    float totalTime = (end - start) / (float) CLOCKS_PER_SEC;
     cout << totalTime << "\t";
-=======
-
-    cout << totalTime / TEST_TIME << "\t";
->>>>>>> 34b1726d862aaa388a9e80b79efc6ab140053257
 
     /*
      * output result
