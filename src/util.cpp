@@ -131,6 +131,18 @@ size_t Graph::findVertexWithBiggestDegree(size_t & maxDegreeVertexID) {
     return maxDegree;
 }
 
+size_t Graph::findVertexWithMinimalDegree(size_t & minDegreeVertexID) {
+    size_t minDegree = numberOfVertices;
+    minDegreeVertexID = 0;
+    for(size_t vertexID=0; vertexID < numberOfVertices; vertexID++) {
+        if(degree(vertexID) > minDegree && degree(vertexID) != 0) {
+            minDegree = degree(vertexID);
+            minDegreeVertexID = vertexID;
+        }
+    }
+    return minDegree;
+}
+
 void Graph::clear() {
     for(size_t i=0; i<numberOfVertices; i++)
         (vertices)[i].clear();
@@ -180,7 +192,7 @@ void Graph::getOneVerticesCover(VCTYPE & vc) {
 
 //For MVC
 //MAXIMUM MATCHING
-size_t Graph::getLowerBound() {
+size_t Graph::getMaximumMatch() {
     Graph g(*this);
     int matchedWith[g.numberOfVertices];
     size_t numberOfMatches=0;
@@ -240,6 +252,35 @@ size_t Graph::getLowerBound() {
 #endif
 
     g.clear();
+    return numberOfMatches;
+}
+
+
+//For MVC
+//MATCHING
+size_t Graph::getOneMatch() {
+    int matchedWith[numberOfVertices];
+    size_t numberOfMatches=0;
+
+    //init 
+    for(int vertexID=0; vertexID<numberOfVertices; vertexID++)
+        matchedWith[vertexID] = NOTMATCHED;
+
+    //finding a initial matching
+    for(int vertexID=0; vertexID<numberOfVertices; vertexID++) {
+        if(matchedWith[vertexID] == NOTMATCHED) {
+            set<size_t>::iterator it;
+            for (it=vertices[vertexID].begin(); it!=vertices[vertexID].end(); ++it) {
+                if(matchedWith[*it] == NOTMATCHED) {
+                    matchedWith[*it] = vertexID;
+                    matchedWith[vertexID] = *it;
+                    numberOfMatches++;
+                    break;
+                }
+            }
+        }
+    }
+
     return numberOfMatches;
 }
 

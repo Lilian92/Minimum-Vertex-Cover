@@ -57,18 +57,18 @@ run :
 #	$(BUILD_DIR)/exec -inst email -alg LS1 -time 10 -seed 0
 #	$(BUILD_DIR)/exec -inst email -alg LS2 -time 10 -seed 0
 
-#	$(BUILD_DIR)/exec -inst as-22july06 -alg BnB -time 10 -seed 0
-#	$(BUILD_DIR)/exec -inst email -alg BnB -time 10 -seed 0
-#	$(BUILD_DIR)/exec -inst delaunay_n10 -alg BnB -time 10 -seed 0
-#	$(BUILD_DIR)/exec -inst football -alg BnB -time 10 -seed 0
+	$(BUILD_DIR)/exec -inst as-22july06 -alg BnB -time 10 -seed 0
+	$(BUILD_DIR)/exec -inst email -alg BnB -time 10 -seed 0
+	$(BUILD_DIR)/exec -inst delaunay_n10 -alg BnB -time 10 -seed 0
+	$(BUILD_DIR)/exec -inst football -alg BnB -time 10 -seed 0
 
-#	$(BUILD_DIR)/exec -inst hep-th -alg BnB -time 10 -seed 0
-#	$(BUILD_DIR)/exec -inst jazz -alg BnB -time 10 -seed 0
-#	$(BUILD_DIR)/exec -inst karate -alg BnB -time 10 -seed 0
-#	$(BUILD_DIR)/exec -inst netscience -alg BnB -time 10 -seed 0
-#	$(BUILD_DIR)/exec -inst power -alg BnB -time 10 -seed 0
-#	$(BUILD_DIR)/exec -inst star -alg BnB -time 10 -seed 0
-#	$(BUILD_DIR)/exec -inst star2 -alg BnB -time 10 -seed 0
+	$(BUILD_DIR)/exec -inst hep-th -alg BnB -time 10 -seed 0
+	$(BUILD_DIR)/exec -inst jazz -alg BnB -time 10 -seed 0
+	$(BUILD_DIR)/exec -inst karate -alg BnB -time 10 -seed 0
+	$(BUILD_DIR)/exec -inst netscience -alg BnB -time 10 -seed 0
+	$(BUILD_DIR)/exec -inst power -alg BnB -time 10 -seed 0
+	$(BUILD_DIR)/exec -inst star -alg BnB -time 10 -seed 0
+	$(BUILD_DIR)/exec -inst star2 -alg BnB -time 10 -seed 0
 
 .PHONY: clean
 
