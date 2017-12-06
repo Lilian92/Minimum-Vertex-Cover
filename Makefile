@@ -78,7 +78,6 @@ clean:
 clean2:
 	$(RM) -r $(BUILD_DIR)
 	$(RM) -r $(SOL_DIR)
-	mkdir Solutions
 
 -include $(DEPS)
 
