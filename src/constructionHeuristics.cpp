@@ -1,7 +1,8 @@
-
 #include "constructionHeuristics.h"
-#include <iterator>
-void constructionHeuristics(Graph &g, VCTYPE &vc, ofstream &output_trace, int cutOffTime, int randSeed) {
+
+
+
+void constructionHeuristics(Graph &g, VCTYPE &vc, ofstream &output_trace, int cutOffTime, int randSeed, bool write) {
 	clock_t start, end;
 	char deleted[g.numberOfVertices];
 	memset(deleted, 0, g.numberOfVertices * sizeof(char));
@@ -12,7 +13,7 @@ void constructionHeuristics(Graph &g, VCTYPE &vc, ofstream &output_trace, int cu
 		int uMinDegree = g.numberOfVertices;
 		for (int i = 0; i < g.numberOfVertices; i++) {
 			int uDegree = g.degree(i);
-			if (uDegree < uMinDegree && deleted[i] == 0) {
+			if (uDegree < uMinDegree && deleted[i] == 0 && uDegree > 0) {
 				uMinDegree = uDegree;
 				uMin = i;
 			}
@@ -29,6 +30,8 @@ void constructionHeuristics(Graph &g, VCTYPE &vc, ofstream &output_trace, int cu
 	}
 	end = clock();
 	float compTime = (end - start) / (float) CLOCKS_PER_SEC;
-	output_trace << compTime << ", " << vc.size() << endl;
+	if (write) {
+		output_trace << compTime << ", " << vc.size() << endl;
+	}
 }
 

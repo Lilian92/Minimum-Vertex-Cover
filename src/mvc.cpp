@@ -77,7 +77,7 @@ int main(int argc, char *argv[]) {
             branchAndBound(G, vc, cutoffTime);
         }
         else if (algorithm == APPROX) {
-            constructionHeuristics(G, vc, output_trace, cutoffTime, seed); 
+            constructionHeuristics(G, vc, output_trace, cutoffTime, seed, true); 
         }
         else if (algorithm == LS1) {
             localSearch1(G, vc, output_trace, cutoffTime, seed); 

@@ -1,10 +1,9 @@
 /*
- * Construction Heuristics Algorithm for MVC
- * 1. FIXME
- * */
+ * Construction Heuristic for MVC 
+ * Finds the vertex of minimum degree
+ * Adds all neighbors to vertex cover
+ * Removes incident edges for every neighbor from graph
+ * Repeat until all edges have been removed
+*/
 #include "util.h"
-void constructionHeuristics(Graph & g, VCTYPE & vc, ofstream & output_trace, int cutOffTime, int randSeed);
-void calculateVertexCover(Graph &g, VCTYPE &vc, int randSeed);
-
-Graph getSpanningTree(Graph &g, size_t startVertexID);
-void dfs(Graph &g, Graph *t, size_t vertexID);
+void constructionHeuristics(Graph & g, VCTYPE & vc, ofstream & output_trace, int cutOffTime, int randSeed, bool write);

@@ -12,6 +12,7 @@
 #include <set>
 #include <stack>
 #include <utility>
+#include <iterator>
 
 #define BnB "BnB"
 #define APPROX "Approx"

@@ -1,4 +1,4 @@
-#include "util.h" 
+#include "util.h"
 
 Graph::Graph(size_t a) :
     numberOfVertices(a), activeNumberOfVertices(a), numberOfEdges(0) {
@@ -177,7 +177,6 @@ void Graph::getOneVerticesCover(VCTYPE & vc) {
 
     addVertices(verticesDeleted);
 }
-
 //For MVC
 //MAXIMUM MATCHING
 size_t Graph::getLowerBound() {
