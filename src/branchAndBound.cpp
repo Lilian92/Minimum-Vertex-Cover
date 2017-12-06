@@ -1,14 +1,19 @@
 #include "branchAndBound.h"
 
 size_t lowerBoundOfMVC(Graph & g) {
-    return g.getLowerBound();
+//    return g.getMaximumMatch();
+    return g.getOneMatch();
+//    VCTYPE vc;
+//    g.getOneVerticesCover(vc);
+//    return vc.size()/2;
 }
 
 void searchMVC(Graph g, VCTYPE & vc, VCTYPE & mvc, clock_t start, int cutoffTime) {
     clock_t end = clock();
     clock_t totalTime = (end - start) / (float) CLOCKS_PER_SEC;
-    if(totalTime > (clock_t)cutoffTime)
+    if(totalTime > (clock_t)cutoffTime) {
         return ;
+    }
 
 #ifdef DEBUG
     cout << "----------start searching" << g.numberOfEdges << " " << g.numberOfVertices << endl;
@@ -38,6 +43,7 @@ void searchMVC(Graph g, VCTYPE & vc, VCTYPE & mvc, clock_t start, int cutoffTime
     //start to search
     size_t maxDegreeVertexID;
     g.findVertexWithBiggestDegree(maxDegreeVertexID);
+    //g.findVertexWithMinimalDegree(maxDegreeVertexID);
 
 #ifdef DEBUG
     cout << "***start search maxDegree with " << maxDegreeVertexID << endl;
@@ -74,7 +80,7 @@ void searchMVC(Graph g, VCTYPE & vc, VCTYPE & mvc, clock_t start, int cutoffTime
         g.removeVertex((*it));
         vc.push(*it);
     }
-    if(lowerBoundOfMVC(g) < mvc.size()) {
+    if((lowerBoundOfMVC(g)+vc.size()) < mvc.size()) {
         searchMVC(g, vc, mvc, start, cutoffTime);
     }
     //recover after search
